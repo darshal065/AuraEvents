@@ -43,14 +43,16 @@
         return response.json();
     })
     .then(data => {
-        console.log(data);
         const container = document.getElementById('displayEvents');
         const htmlContent = data.map((item, index) => {
         const delay = 100 * (index + 1);
-
+        const img = ("image" in item  && item.image != null)? item.image : "assets/img/favicon.png";
         return `
             <div class="col-md-6" data-aos="fade-right" data-aos-delay="${delay}">
                 <div class="service-item">
+                    <div class="service-icon">
+                     <i class="bi"> <img src=${img}></img>
+                    </i> </div>
                     <div class="service-content">
                         <h3>${item.Name}</h3>
                         <p>${item.details}</p>
@@ -66,7 +68,7 @@
         `;
     }).join(''); // Join the array of strings into one long HTML string
 
-    container.innerHTML = container.innerHTML + htmlContent;
+    container.innerHTML = htmlContent;
         //document.getElementById("output-area ").innerHTML = `User ID: ${data.userId}, Title: ${data.title}`;
     })
     .catch(error => {
@@ -131,7 +133,7 @@
         <div id ="displayEvents" class="row justify-content-center g-5">
 
         <!--Start Service Item-->
-        <!-- <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+        <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
             <div class="service-item">
              
               <div class="service-content">
@@ -143,7 +145,7 @@
                 </a>
               </div>
             </div>
-          </div> -->
+          </div> 
         <!-- End Service Item -->
           
 
