@@ -46,7 +46,8 @@
         const container = document.getElementById('displayEvents');
         const htmlContent = data.map((item, index) => {
         const delay = 100 * (index + 1);
-        const img = ("image" in item  && item.image != null)? item.image : "assets/img/favicon.png";
+        console.log("image" in item );
+        const img = ("image" in item  && item.image.length > 1)? item.image : "assets/img/favicon.png";
         return `
             <div class="col-md-6" data-aos="fade-right" data-aos-delay="${delay}">
                 <div class="service-item">
